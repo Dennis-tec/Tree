@@ -1,47 +1,30 @@
 class Node:
-    def __init__(self, val=None):
-        self.val = val
-        self.next = None
-
-
-class LinkedList:
-    def __init__(self):
-        self.head = None
-
-    def insert(self, data):
-        newdata = Node(data)
-        if self.head is None:
-            self.head = newdata
-        else:
-            current = self.head
-            while current.next:
-                current = current.next
-            current.next = newdata
-
-    def printr(self):
-        printval = self.head
-        while printval:
-            print(printval.val)
-            printval = printval.next
-        cb = []
-        while self.head:
-            cb.append(str(self.head.val) + " --> ")
-            self.head = self.head.next
-        return " ".join(cb)
-
-    def remove(self, k):
-        first = second = self.head
-        for i in range(k):
-            first = first.next
-        while first.next:
-            first = first.next
-            second = second.next
-        second.next = second.next.next
-
-
-b = LinkedList()
-c = [2, 3, 4, 6]
-for item in c:
-    b.insert(item)
-b.remove(2)
-print(b.printr())
+  def __init__(self, data):
+    self.data = data
+    self.left = None
+    self.right = None
+  def inorder(self, tree):
+    if tree !=None:
+      self.inorder(tree.left)
+      print(tree.data)
+      self.inorder(tree.right)
+  def postorder(self, tree):
+    if tree !=None:
+      self.inorder(tree.left)
+      self.inorder(tree.right)
+      print(tree.data)
+  def preorder(self, tree):
+    if tree !=None:
+      print(tree.data)
+      self.inorder(tree.left)
+      self.inorder(tree.right)
+b = Node(2)
+b.left = Node(4)
+b.right = Node(10)
+b.left.left = Node(19)
+b.left.right = Node(13)
+b.right.left = Node(12)
+b.right.right = Node(11)
+print(b.inorder(b))
+print(b.postorder(b))
+print(b.preorder(b))
